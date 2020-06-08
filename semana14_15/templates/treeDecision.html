@@ -1,0 +1,37 @@
+{% extends "planta.html" %}
+
+{% block content %}
+
+	<style type="text/css">
+		.container{
+			background-color: white;
+			border-radius: 6px;
+		}
+	</style>
+
+	<title>Tree Decision Clasification</title>
+	<br>
+	<br>
+
+	<div class="container mx-auto p-5 m-5">
+		<form action="http://localhost:5000/treeDecisionResult" method="post">
+		  <div class="form-row">
+		    <div class="col-md-6 mb-3">
+		      <label for="validationDefault01">Numero de veces que se salta clases al dia</label>
+		      <input type="number" name="dia" class="form-control" id="validationDefault01">
+		    </div>
+		    <div class="col-md-6 mb-3">
+		      <label for="validationDefault02">Clases saltadas a la semana</label>
+		      <input type="number" name="sem" class="form-control" id="validationDefault02" value="Otto" >
+		    </div>
+		  </div>
+		  <div class="form-row">
+		    <div class="col-md-6 mb-3">
+		      <label for="validationDefault01">Clases saltadas al mes</label>
+		      <input type="number" name="mes" class="form-control" id="validationDefault01" value="Mark" >
+		    </div>
+		  </div>
+		  <button class="btn btn-primary" type="submit">Predecir</button>
+		</form>
+	</div>
+{% endblock %}

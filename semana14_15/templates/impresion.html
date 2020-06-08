@@ -1,0 +1,29 @@
+{% extends "planta.html" %}
+
+{% block content %}
+<style type="text/css">
+	div{
+		background-color: white;
+		border-radius: 7px;
+	}	
+</style>
+
+	<div class="container m-5 p-4 mx-auto">
+			<p class="h4">Cantidad materias que probablemente podrias reprobar</p>
+		<div class="row">
+			<input type="text" class="m-3" name="" readonly="readonly" value="{{abcd}}">
+		</div>
+		<div class="row">
+			<input type="button" class="btn btn-primary m-4" onclick="main()" value="regresar">
+			<br>
+		</div>
+		<div class="row">
+			<p>Si sale un numero decimal, significa que es el punto medio de los enteros mas cercanos, por ejemplo:<br>Si sale 3.5 entonces significa que la probabilidad se encuentra entre 3 y 4 materias por reprobar</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function main(){
+			window.location.replace("http://localhost:5000/menu");
+		}
+	</script>
+{% endblock %}

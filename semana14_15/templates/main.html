@@ -1,0 +1,126 @@
+{% extends "planta.html" %}
+
+{% block content %}
+
+	<title>Menu</title>
+	<style type="text/css">
+		.cont{
+			background: white;
+			border-radius: 6px;
+		}
+		p{
+			color:white;
+		}
+		.card-text{
+			color: black;
+		}
+	</style>
+	<h3 class="bienvenida mx-auto" style="color: white;"></h3>
+
+	<div class="container m-4 mx-auto cont">
+		<div id="barGraph">			
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<p>t: true<br>f: false<br>La primer posicion significa: "¿Te saltas clases?"<br>La segunda posicion significa: "¿Tienes reprobadas?"<br>
+			<br>Ejemplo:<br> ff: (¿Te saltas clases?)=false and (¿Tienes reprobadas?)=false
+		</p>
+	</div>
+	<br>
+	<div class="container m-4 mx-auto">
+		<p class="mx-auto h3">Cantidad de personas que creen que es util pasar asistencia</p>
+		<div id="donut" class="cont"></div>
+		<p>Esta es la cantidad de personas (en porcentaje) que piensan que tan util es pasar asistencia</p>
+	</div>
+
+	<br>
+
+	<!-- Insertar dentro de este container la otra tarjeta para el algorimto -->
+	<div class="container mx-auto m-5">
+		<div class="row">
+			<div class="card" id="cardd" style="width: 18rem;">
+			  <img src="../static/img/tree.png" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">Arbol de decisiones</h5>
+			    <p class="card-text">Realizar predicciones con el algoritmo sobre nuestro proyecto</p>
+			    <a href="http://localhost:5000/menu/treeDecision" class="btn btn-primary">Ir al algoritmo</a>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.bienvenida').text('Bienvenido '+localStorage.getItem('nombre'))
+		});
+	</script>
+
+
+	<script type="text/javascript">
+		// Use Morris.Bar
+		Morris.Bar({
+		  element: 'barGraph',
+		  data: [
+		  {% for i in a %}
+		    {% if a.index(i)==0 %}
+		    	{x: 'ff', y: {{i}}},
+		    {% endif %}
+		    {% if a.index(i)==1 %}
+		    	{x: 'tf', y: {{i}}},
+		    {% endif %}
+		    {% if a.index(i)==2 %}
+		    	{x: 'ft', y: {{i}}},
+		    {% endif %}
+		    {% if a.index(i)==3 %}
+		    	{x: 'tt', y: {{i}}},
+		    {% endif %}
+		  {% endfor %}
+		  ],
+		  xkey: 'x',
+		  ykeys: ['y'],
+		  resize:true,
+		  labels: ['Catidad de alumnos'],
+		  barColors: function (row, series, type) {
+		    if (type === 'bar') {
+		      var red = Math.ceil(255 * row.y / this.ymax);
+		      return 'rgb(' + red + ',0,0)';
+		    }
+		    else {
+		      return '#000';
+		    }
+		  }
+		});
+
+		Morris.Donut({
+		  element: 'donut',
+		  data: [
+		  {% for i in c %}
+		    {% if c.index(i)==0 %}
+		    	{value: {{i}}, label: 'Poco útil'},
+		    {% endif %}
+		    {% if c.index(i)==1 %}
+		    	{value: {{i}}, label: 'Inutil'},
+		    {% endif %}
+		    {% if c.index(i)==2 %}
+		    	{value: {{i}}, label: 'Útil'},
+		    {% endif %}
+		    {% if c.index(i)==3 %}
+		    	{value: {{i}}, label: 'Muy útil'},
+		    {% endif %}
+		  {% endfor %}  
+		    
+		  ],
+		  backgroundColor: '#ccc',
+		  resize:true,
+		  labelColor: '#060',
+		  colors: [
+		    '#0FA465',
+		    '#39B580',
+		    '#67C69D',
+		    '#95D7BB'
+		  ],
+		  formatter: function (x) { return x + "%"}
+		});
+	</script>
+{% endblock %}

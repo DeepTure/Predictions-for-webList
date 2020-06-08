@@ -1,0 +1,147 @@
+{% extends "planta.html" %}
+
+{% block content %}
+	<style type="text/css">
+		body{
+			background: url("../static/img/computer.jpg");
+			background-repeat: no-repeat; 
+		}
+	</style>
+	<div id="fb-root"></div><script src="https://connect.facebook.net/en_US/sdk.js"></script><script>
+          /*FB.init({
+            appId   : 249226889498853,
+            status  : true,
+            xfbml   : true,
+            version : 'v2.9'
+          });
+          FB.AppEvents.logPageView();
+
+
+          FB.getLoginStatus(function(response) {
+			  if (response.status === 'connected') {
+			    console.log(response.authResponse.accessToken);
+			  }
+			});
+
+
+          FB.login(function(response) {
+    if (response.authResponse) {
+     console.log('Welcome!  Fetching your information.... ');
+     FB.api('/me', function(response) {
+       console.log('Good to see you, ' + response.name + '.');
+       console.log(response)
+       //esto es JQuery
+       $(document).ready(function(){
+       		 $('#lastNamem').text(response.name);
+       		 $('#lastNamem').addClass('entro');
+
+       		 $('.fb-login-button').click(function(){
+       		 		$('#lastNamem').text(response.name);
+       		 });
+       		 $('.btn-danger').click(function(){
+       		 	 $('#lastNamem').text('Not name');
+       		 });
+       });*/
+       localStorage.setItem('nombre',response.name)
+       window.location.replace("http://localhost:5000/menu");
+     });
+    } else {
+     console.log('User cancelled login or did not fully authorize.');
+    }
+});
+
+          FB.getLoginStatus(function(response) {
+			    console.log(statusChangeCallback(response));
+			});
+
+          FB.api('/me', function(response) {
+			    console.log(JSON.stringify(response));
+			});
+          </script>
+          <div id="fb-root"></div>
+				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v7.0&appId=249226889498853&autoLogAppEvents=1"></script>
+
+          <!--___________________________________________________________________________-->
+
+	<title>Login</title>
+	<style type="text/css">
+		#cont{
+			background: white;
+			border-radius: 5px;
+		}
+	</style>
+
+
+	<div class="container m-5">
+		<div class="row">
+			<div class="card mx-auto" style="width: 18rem;">
+			  <img src="https://th.bing.com/th/id/OIP.WCH5o6Xw6EXEYIXh2ZEKLAHaHa?w=196&h=182&c=7&o=5&pid=1.7" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title" id="lastNamem">Card title</h5>
+			    <p class="card-text" >En caso de que falle el boton de arriba usar los de abajo</p>
+			    <!--___________________________________________________________________________-->
+
+				<div class="fb-login-button mx-auto" data-size="large"  data-button-type="continue_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="true" data-width=""></div>
+				<hr>
+				<input type="button" class="btn btn-primary" value="Iniciar sesion" onclick="FB.login()">
+          		<input type="button" class="btn btn-danger" value="Cerrar sesion" onclick="FB.logout()">
+				<!--___________________________________________________________________________-->
+			  </div>
+			</div>
+			<div class="col m-5">
+				<!-- este es la tarjeta que explica como y porque -->
+				<div class="card text-center">
+					  <div class="card-header">
+					    <ul class="nav nav-tabs card-header-tabs">
+					      <li class="nav-item">
+					        <a class="nav-link active" onclick="two()" id="como" href="#">como</a>
+					      </li>
+					      <li class="nav-item">
+					        <a class="nav-link" id="por" onclick="one()" href="#">Porque</a>
+					      </li>
+					     <!-- <li class="nav-item">
+					        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+					      </li>-->
+					    </ul>
+					  </div>
+					  <div class="card-body">
+					    <h5 class="card-title">Usamos el algoritmo de 'ingrese su algoritmo' </h5>
+					    <p class="card-text">analizamos y extragimos la bd con pandas y numpy, realizamos graficas con morris y usamos flask para desarrollar la web</p>
+					    <a href="#" onclick="ir()" class="btn btn-primary">Vamos</a>
+					  </div>
+					</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		/*$(document).ready(function(){
+			FB.api('/me', {fields: 'last_name'}, function(response) {
+			  console.log(response);
+			  var aux = response.name
+			  $('#lastNamem').text(aux);
+			});
+		});*/
+		function one(){
+			$(document).ready(function(){
+				$('.card-title').html('¿Porque elegimos este algoritmo?');
+				$('.card-text').html('este lgoritmo se adapta de manera muy eficiente a nuestra base de datos y las predicciones son muy interesntes');
+				document.getElementById('por').className ='nav-link active'
+				document.getElementById('como').className ='nav-link'
+			});
+		}
+		function two(){
+			$(document).ready(function(){
+				$('.card-title').html('Usamos el algoritmo de arbol y clustering');
+				$('.card-text').html('analizamos y extragimos la bd con pandas y numpy, realizamos graficas con morris y usamos flask para desarrollar la web');
+				document.getElementById('por').className ='nav-link'
+				document.getElementById('como').className ='nav-link active'
+			});
+		}
+		function ir(){
+			window.location.replace("http://localhost:5000/menu");
+		}
+	</script>
+
+	
+{% endblock %}
