@@ -24,7 +24,7 @@
 			});
 
 
-          FB.login(function(response) {
+          /*FB.login(function(response) {
     if (response.authResponse) {
      console.log('Welcome!  Fetching your information.... ');
      FB.api('/me', function(response) {
@@ -48,7 +48,7 @@
     } else {
      console.log('User cancelled login or did not fully authorize.');
     }
-});
+});*/
 
           FB.getLoginStatus(function(response) {
 			    console.log(statusChangeCallback(response));
@@ -77,7 +77,7 @@
 			<div class="card mx-auto" style="width: 18rem;">
 			  <img src="https://th.bing.com/th/id/OIP.WCH5o6Xw6EXEYIXh2ZEKLAHaHa?w=196&h=182&c=7&o=5&pid=1.7" class="card-img-top" alt="...">
 			  <div class="card-body">
-			    <h5 class="card-title" id="lastNamem">Card title</h5>
+			    <h5 class="card-title" id="lastNamem">Entrar con facebook</h5>
 			    <p class="card-text" >En caso de que falle el boton de arriba usar los de abajo</p>
 			    <!--___________________________________________________________________________-->
 
@@ -94,10 +94,10 @@
 					  <div class="card-header">
 					    <ul class="nav nav-tabs card-header-tabs">
 					      <li class="nav-item">
-					        <a class="nav-link active" onclick="two()" id="como" href="#">como</a>
+					        <a class="nav-link active" onclick="two()" id="como" href="#">¿Con que?</a>
 					      </li>
 					      <li class="nav-item">
-					        <a class="nav-link" id="por" onclick="one()" href="#">Porque</a>
+					        <a class="nav-link" id="por" onclick="one()" href="#">¿Porque?</a>
 					      </li>
 					     <!-- <li class="nav-item">
 					        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -105,8 +105,8 @@
 					    </ul>
 					  </div>
 					  <div class="card-body">
-					    <h5 class="card-title">Usamos el algoritmo de 'ingrese su algoritmo' </h5>
-					    <p class="card-text">analizamos y extragimos la bd con pandas y numpy, realizamos graficas con morris y usamos flask para desarrollar la web</p>
+					    <h5 class="card-title" id="tl">Usamos el algoritmo de 'ingrese su algoritmo' </h5>
+					    <p class="card-text" id="tx">analizamos y extragimos la bd con pandas y numpy, realizamos graficas con morris y usamos flask para desarrollar la web</p>
 					    <a href="#" onclick="ir()" class="btn btn-primary">Vamos</a>
 					  </div>
 					</div>
@@ -124,16 +124,16 @@
 		});*/
 		function one(){
 			$(document).ready(function(){
-				$('.card-title').html('¿Porque elegimos este algoritmo?');
-				$('.card-text').html('este lgoritmo se adapta de manera muy eficiente a nuestra base de datos y las predicciones son muy interesntes');
+				$('#tl').html('¿Porque elegimos este algoritmo?');
+				$('#tx').html('este lgoritmo se adapta de manera muy eficiente a nuestra base de datos y las predicciones son muy interesntes');
 				document.getElementById('por').className ='nav-link active'
 				document.getElementById('como').className ='nav-link'
 			});
 		}
 		function two(){
 			$(document).ready(function(){
-				$('.card-title').html('Usamos el algoritmo de arbol y clustering');
-				$('.card-text').html('analizamos y extragimos la bd con pandas y numpy, realizamos graficas con morris y usamos flask para desarrollar la web');
+				$('#tl').html('Usamos el algoritmo de arbol y clustering');
+				$('#tx').html('analizamos y extragimos la bd con pandas y numpy, realizamos graficas con morris y usamos flask para desarrollar la web');
 				document.getElementById('por').className ='nav-link'
 				document.getElementById('como').className ='nav-link active'
 			});

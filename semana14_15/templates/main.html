@@ -1,6 +1,6 @@
 {% extends "planta.html" %}
 
-{% block content %}
+{% block content %}	
 
 	<title>Menu</title>
 	<style type="text/css">
@@ -9,20 +9,20 @@
 			border-radius: 6px;
 		}
 		p{
-			color:white;
+			color:black;
 		}
 		.card-text{
 			color: black;
 		}
 	</style>
-	<h3 class="bienvenida mx-auto" style="color: white;"></h3>
+	<h3 class="bienvenida mx-auto" style="color: black;"></h3>
 
 	<div class="container m-4 mx-auto cont">
 		<div id="barGraph">			
 		</div>
 	</div>
 	<br>
-	<div class="container">
+	<div class="container h5">
 		<p>t: true<br>f: false<br>La primer posicion significa: "¿Te saltas clases?"<br>La segunda posicion significa: "¿Tienes reprobadas?"<br>
 			<br>Ejemplo:<br> ff: (¿Te saltas clases?)=false and (¿Tienes reprobadas?)=false
 		</p>
@@ -31,7 +31,14 @@
 	<div class="container m-4 mx-auto">
 		<p class="mx-auto h3">Cantidad de personas que creen que es util pasar asistencia</p>
 		<div id="donut" class="cont"></div>
-		<p>Esta es la cantidad de personas (en porcentaje) que piensan que tan util es pasar asistencia</p>
+		<div class="container">
+			<p class="h4 m-5">Esta es la cantidad de personas (en porcentaje) que piensan que tan util es pasar asistencia</p>
+		</div>
+	</div>
+	<br>
+	<div class="container m-4 mx-auto">
+		<p class="mx-auto h3">Frecuencia con la que pasan asistencia tus profes</p>
+		<div class="m-3 cont" id="fplst"></div>
 	</div>
 
 	<br>
@@ -39,12 +46,21 @@
 	<!-- Insertar dentro de este container la otra tarjeta para el algorimto -->
 	<div class="container mx-auto m-5">
 		<div class="row">
-			<div class="card" id="cardd" style="width: 18rem;">
+			<div class="card m-5" id="cardd" style="width: 18rem;">
+			  <img src="https://www.houseofbots.com/images/news/2542/cover.png" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">K-NN</h5>
+			    <p class="card-text">Realizar predicciones con el algoritmo sobre nuestro proyecto</p>
+			    <a href="http://localhost:5000/menu/treeDecision" class="btn btn-primary">Ir al algoritmo</a>
+			  </div>
+			</div>
+
+			<div class="card m-5" id="cardd" style="width: 18rem;">
 			  <img src="../static/img/tree.png" class="card-img-top" alt="...">
 			  <div class="card-body">
 			    <h5 class="card-title">Arbol de decisiones</h5>
 			    <p class="card-text">Realizar predicciones con el algoritmo sobre nuestro proyecto</p>
-			    <a href="http://localhost:5000/menu/treeDecision" class="btn btn-primary">Ir al algoritmo</a>
+			    <a href="http://localhost:5000/menu/knnn" class="btn btn-primary">Ir al algoritmo</a>
 			  </div>
 			</div>
 		</div>
@@ -121,6 +137,29 @@
 		    '#95D7BB'
 		  ],
 		  formatter: function (x) { return x + "%"}
+		});
+
+		Morris.Donut({
+		  element: 'fplst',
+		  data: [
+		    {% for i in e %}
+			    {% if e.index(i)==0 %}
+			    	{value: {{i}}, label: 'Nunca'},
+			    {% endif %}
+			    {% if e.index(i)==1 %}
+			    	{value: {{i}}, label: '1-2 veces a la semana'},
+			    {% endif %}
+			    {% if e.index(i)==2 %}
+			    	{value: {{i}}, label: '3-4 veces a la semana'},
+			    {% endif %}
+			    {% if e.index(i)==3 %}
+			    	{value: {{i}}, label: 'Todos los días'},
+			    {% endif %}
+			{% endfor %} 
+		  ],
+		  formatter: function (x) { return x + "%"}
+		}).on('click', function(i, row){
+		  console.log(i, row);
 		});
 	</script>
 {% endblock %}

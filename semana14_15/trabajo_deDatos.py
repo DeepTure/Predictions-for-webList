@@ -3,35 +3,6 @@ import numpy as np
 from sklearn import tree
 import pruebas
 
-newlist = []
-newlist2 = []
-def transform():
-	df = pd.read_csv('encuestas.csv')
-	for x in df['¿Con que frecuencia te saltas clases?']:
-		if x == 'Nunca':
-			newlist.append(0)
-		elif x == '1-2 veces al día':
-			newlist.append(0.5)
-		elif x == '3-4 veces al día':
-			newlist.append(3.5)
-		elif x == 'Más de 4 veces al día':
-			newlist.append(4.5)
-		elif x == '1-2 veces por semana':
-			newlist.append(10)
-		elif x == '3-4 veces por semana':
-			newlist.append(17)
-		elif x == '1-2 veces al mes':
-			newlist.append(45)
-            
-	for x in a2:
-		if x == 'Ninguna':
-			newlist2.append(0)
-		elif x == '1-2 materias':
-			newlist2.append(0.5)
-		elif x == '3-4 materias':
-			newlist2.append(3.5)
-		elif x == 'Más de 5 materias':
-			newlist2.append(5.5)
 
 def contarClasesSaltadasVsMateriasReprobadas():
 	df = pd.read_csv('encuestas.csv')
@@ -76,90 +47,24 @@ def howManyBelive():
 	data = [pu,inu, ut, mu]
 	return data
 
-
-def predictionsButNotWork(coo):
-	#este algoritmo si sirve pero no es eficiente, realmente no tiene sentido, but no borrar pls
+def fpa():
 	df = pd.read_csv('encuestas.csv')
-	a1 = np.array(df['¿Con que frecuencia te saltas clases?'])
-	newlist = []
-	for x in df['¿Con que frecuencia te saltas clases?']:
-		if x == 'Nunca':
-			newlist.append(0)
-		elif x == '1-2 veces al día':
-			newlist.append(0.5)
-		elif x == '3-4 veces al día':
-			newlist.append(3.5)
-		elif x == 'Más de 4 veces al día':
-			newlist.append(4.5)
-		elif x == '1-2 veces por semana':
-			newlist.append(10)
-		elif x == '3-4 veces por semana':
-			newlist.append(17)
-		elif x == '1-2 veces al mes':
-			newlist.append(45)
-
-	print(f'Lista nueva: \n{newlist}')
-
-
-	a2 = np.array(df['¿Cuantas materias tienes reprobadas?'])
-	newlist2 = []
-	for x in a2:
-		if x == 'Ninguna':
-			newlist2.append(0)
-		elif x == '1-2 materias':
-			newlist2.append(0.5)
-		elif x == '3-4 materias':
-			newlist2.append(3.5)
-		elif x == 'Más de 5 materias':
-			newlist2.append(5.5)
-	print(newlist2)
-	newlist2.append(0.5)
-	print(f'\n{len(newlist2)} \n{len(newlist)}')
-	#-----------------------termina newList-----------------------------
-	tt = 0
-	ft = 0
-	tf = 0
-	ff = 0
-	for i in range(0,len(a3)):
-		if ((a3[i]==True) and (a4[i]==True)):
-			tt+=1
-		elif ((a3[i]==False) and (a4[i]==True)):
-			ft+=1
-		elif ((a3[i]==True) and (a4[i]==False)):
-			tf+=1
-		elif ((a3[i]==False) and (a4[i]==False)):
-			ff+=1
-
-	print(f'tt: {tt}\nft:{ft} \ntf:{tf}\nff: {ff}')
-
-	print((a3[0]==True and a4[0]==True))
-
-	#en este arrayList voy a unir newlist y newlist2 atraves de data
-	features = []
-	labels = []
-	for i in range(0,len(a3)):
-		aux = []
-		ax = newlist[i]
-		ax2 = newlist2[i]
-		aux.append(ax)
-		aux.append(ax2)
-		features.append(aux)
-		if ((a3[i]==True) and (a4[i]==True)):
-			labels.append('tt')
-		elif ((a3[i]==False) and (a4[i]==True)):
-			labels.append('ft')
-		elif ((a3[i]==True) and (a4[i]==False)):
-			labels.append('tf')
-		elif ((a3[i]==False) and (a4[i]==False)):
-			labels.append('ff')
-
-	#clustering -------------------------------------
-	kmeans=KMeans(n_clusters=6)
-	kmeans=kmeans.fit(features)
-	labels=kmeans.predict(coo)
-	centroids=kmeans.cluster_centers_	
-
-	print(f'Prediction whit clustering-------------------------\n{labels}\n---------------------------')
+	pu=0
+	inu=0
+	ut=0
+	mu=0
+	array = list(df['¿Que tan seguido pasan asistencia tus profesores?'])
+	for i in range(0,len(array)):
+		if(array[i]=='Nunca'):
+			pu+=1
+		if(array[i]=='1-2 veces a la semana'):
+			inu+=1
+		if(array[i]=='3-4 veces a la semana'):
+			ut+=1
+		if(array[i]=='Todos los días'):
+			mu+=1
+	data = [pu,inu, ut, mu]
+	return data
 
 def treeAlgorithm(coo,cont):
     pred = pruebas.pred(coo)
