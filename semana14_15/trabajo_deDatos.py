@@ -1,6 +1,7 @@
 import pandas as pd 
 import numpy as np 
 from sklearn import tree
+import pruebas
 
 newlist = []
 newlist2 = []
@@ -21,8 +22,7 @@ def transform():
 			newlist.append(17)
 		elif x == '1-2 veces al mes':
 			newlist.append(45)
-
-
+            
 	for x in a2:
 		if x == 'Ninguna':
 			newlist2.append(0)
@@ -162,54 +162,60 @@ def predictionsButNotWork(coo):
 	print(f'Prediction whit clustering-------------------------\n{labels}\n---------------------------')
 
 def treeAlgorithm(coo,cont):
-	newlist = []
-	newlist2 = []
-	df = pd.read_csv('encuestas.csv')
-	for x in df['¿Con que frecuencia te saltas clases?']:
-		aux = []
-		if x == 'Nunca':
-			aux.append(0)
-			newlist.append(aux)
-		elif x == '1-2 veces al día':
-			aux.append(0.5)
-			newlist.append(aux)
-		elif x == '3-4 veces al día':
-			aux.append(3.5)
-			newlist.append(aux)
-		elif x == 'Más de 4 veces al día':
-			aux.append(4.5)
-			newlist.append(aux)
-		elif x == '1-2 veces por semana':
-			aux.append(10)
-			newlist.append(aux)
-		elif x == '3-4 veces por semana':
-			aux.append(17)
-			newlist.append(aux)
-		elif x == '1-2 veces al mes':
-			aux.append(45)
-			newlist.append(aux)
+    pred = pruebas.pred(coo)
+    
+    return pred
+    """
+    newlist = []
+    list2 = []
+    df = pd.read_csv('encuestas.csv')
+    for x in df['¿Con que frecuencia te saltas clases?']:
+        aux = []
+        if x == 'Nunca':
+            aux.append(0)
+            newlist.append(aux)
+        elif x == '1-2 veces al día':
+            aux.append(0.5)
+            newlist.append(aux)
+        elif x == '3-4 veces al día':
+            aux.append(3.5)
+            newlist.append(aux)
+        elif x == 'Más de 4 veces al día':
+            aux.append(4.5)
+            newlist.append(aux)
+        elif x == '1-2 veces por semana':
+            aux.append(10)
+            newlist.append(aux)
+        elif x == '3-4 veces por semana':
+            aux.append(17)
+            newlist.append(aux)
+        elif x == '1-2 veces al mes':
+            aux.append(45)
+            newlist.append(aux)
 
-	a2 = np.array(df['¿Cuantas materias tienes reprobadas?'])
-	for x in a2:
-		if x == 'Ninguna':
-			newlist2.append('0')
-		elif x == '1-2 materias':
-			newlist2.append('0.5')
-		elif x == '3-4 materias':
-			newlist2.append('3.5')
-		elif x == 'Más de 5 materias':
-			newlist2.append('5.5')
-	newlist2.append('5.5')
+    a2 = np.array(df['¿Cuantas materias tienes reprobadas?'])
+    for x in a2:
+        if x == 'Ninguna':
+            newlist2.append('0')
+        elif x == '1-2 materias':
+            newlist2.append('0.5')
+        elif x == '3-4 materias':
+            newlist2.append('3.5')
+        elif x == 'Más de 5 materias':
+            newlist2.append('5.5')
+            list2.append('5.5')
 
-	if(cont=='sem'):
-		coo=coo*5
-	if(cont=='mes'):
-		coo*=45
+    if(cont=='sem'):
+        coo=coo*5
+    if(cont=='mes'):
+        coo*=45
 
-	classif = tree.DecisionTreeClassifier()
-	classif.fit(newlist,newlist2)
+    classif = tree.DecisionTreeClassifier()
+    classif.fit(newlist,newlist2)
 
-	return classif.predict([[coo]])
+    return classif.predict([[coo]])
+"""
+    
 
 def lostTime():
 	#¿Cuanto tiempo tardan tus profesores en pasar lista? // ¿Que tan seguido pasan asistencia tus profesores?
@@ -235,6 +241,4 @@ def lostTime():
 			data2.append(3.5)
 		elif(array[i]=='Todos los días'):
 			data2.append(6)
-
-	dat = [data,data2]
 	return data2

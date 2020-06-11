@@ -156,10 +156,8 @@ def predictions(coo):
 			newlist.append(17)
 		elif x == '1-2 veces al mes':
 			newlist.append(45)
-
-	print(f'Lista nueva: \n{newlist}')
-
-
+            
+    print(f'Lista nueva: \n{newlist}')
 	a2 = np.array(df['¿Cuantas materias tienes reprobadas?'])
 	newlist2 = []
 	for x in a2:
