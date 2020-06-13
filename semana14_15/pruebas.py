@@ -104,6 +104,7 @@ def knnButIsTree(dat1):
             newlist2.append(2)
         elif x == 'Más de 5 materias':
             newlist2.append(3)
+    #todo lo anterior fue extraccion de datos y lo de abajo es la prediccion y el entrenamiento del algpritmo
 
     classif = tree.DecisionTreeClassifier()
     classif.fit(newlist,newlist2)

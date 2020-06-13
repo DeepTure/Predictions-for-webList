@@ -50,7 +50,7 @@ newlist2.append(0.5)
 print(f'\n{len(newlist2)} \n{len(newlist)}')
 
 
-plt.scatter(newlist,newlist2,alpha=0.5)
+#plt.scatter(newlist,newlist2,alpha=0.5)
 
 #plt.bar(newlist,newlist2,facecolor='#9999ff')
 
@@ -119,9 +119,9 @@ for i in range(len(features)):
 	plt.plot(features[i][0],features[i][1],colors[labels[i]],markersize=10)
 
 
-plt.scatter(centroids[:,0],centroids[:,1],marker='x',s=150,linewidths=5,zorder=10)
+#plt.scatter(centroids[:,0],centroids[:,1],marker='x',s=150,linewidths=5,zorder=10)
 
-plt.show()
+#plt.show()
 
 
 print('____________________________________________________________Belive\n')
@@ -157,7 +157,7 @@ def predictions(coo):
 		elif x == '1-2 veces al mes':
 			newlist.append(45)
             
-    print(f'Lista nueva: \n{newlist}')
+    #print(f'Lista nueva: \n{newlist}')
 	a2 = np.array(df['¿Cuantas materias tienes reprobadas?'])
 	newlist2 = []
 	for x in a2:
@@ -289,4 +289,17 @@ def treeAlgorithm(coo):
 
 	print(classif.predict([[coo]]))
 
-treeAlgorithm(10)
+#treeAlgorithm(10)
+
+
+print('max-------------------------')
+d = [1,2,3,4,5,6,87,8]
+print(max(d))
+print(sorted(d))
+
+
+#la moda sol sirve para la moda sin ser datos numericos
+#me = df["¿Con que frecuencia te saltas clases?"].mean()
+#mediana = df["¿Con que frecuencia te saltas clases?"].median()
+moda = df["¿Con que frecuencia te saltas clases?"].mode()
+print(moda)

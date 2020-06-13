@@ -5,6 +5,7 @@ import pruebas
 
 
 def contarClasesSaltadasVsMateriasReprobadas():
+	#esta funcion retorna la cantidada de alumnos que se saltan cases vs la cantidad de alumnos de reprueban materias, para ser graficadas
 	df = pd.read_csv('encuestas.csv')
 	a3 = list(df['¿Con que frecuencia te saltas clases?']=='Nunca')
 	a4 = list(df['¿Cuantas materias tienes reprobadas?']=='Ninguna')
@@ -27,6 +28,7 @@ def contarClasesSaltadasVsMateriasReprobadas():
 	return data
 
 def howManyBelive():
+	#esta funcion cuenta cuantas personas creen que que tan util es pasar asistencia, tambien para ser graficada
 	df = pd.read_csv('encuestas.csv')
 	pu=0
 	inu=0
@@ -67,6 +69,7 @@ def fpa():
 	return data
 
 def treeAlgorithm(coo,cont):
+	#etsa funcion nos lleva a el algoritmo de k-nn patra hacer la prediccion // aunque diga arbol de decision
     pred = pruebas.pred(coo)
     
     return pred
@@ -121,7 +124,7 @@ def treeAlgorithm(coo,cont):
     return classif.predict([[coo]])
 """
     
-
+#esta funcin cuenta cuanto tiempo tardarn tus porfesores en psar asistencia, //funcion fuera de uso
 def lostTime():
 	#¿Cuanto tiempo tardan tus profesores en pasar lista? // ¿Que tan seguido pasan asistencia tus profesores?
 	df = pd.read_csv('encuestas.csv')

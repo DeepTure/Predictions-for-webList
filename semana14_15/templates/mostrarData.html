@@ -1,0 +1,68 @@
+{% extends "planta.html" %}
+
+{% block content %}	
+	<title>Analisis de datos</title>
+
+	<style type="text/css">
+		#wt{
+			background-color: white;
+			border-radius: 6px;
+		}
+	</style>
+
+	<br><br><br>
+	<div class="container mx-auto p-5" id="wt">
+
+		<form>
+		   <div class="form-row">
+		   		<div class="col">
+		   			<p class="h3">¿Con que frecuencia te saltas clases?</p>
+		   		</div>
+		  		<div class="col">
+		  			<p class="h3">¿Cuantas materias tienes reprobadas?</p>
+		  		</div>
+		  	</div>
+		  <div class="form-row mt-5">
+		    <div class="col">
+		    	<h4>Moda</h4>
+		      <input type="text" class="form-control" readonly="readonly" value="{{m[0]}}">
+		    </div>
+		    <div class="col">
+		    	<h4>Moda</h4>
+		      <input type="text" class="form-control" readonly="readonly" value="{{m[1]}}">
+		    </div>
+		  </div>
+
+		  <div class="form-row mt-5">
+		    	<div class="col">
+		    		<h4>Mediana</h4>
+		    		<input type="text" class="form-control" readonly="readonly" value="{{mm[0]}} y {{mm[1]}}">
+		    	</div>
+		    	<div class="col">
+		    		<h4>Mediana</h4>
+		    		<input type="text" class="form-control" readonly="readonly" value="{{mm[2]}}">
+		    	</div>
+		    </div>
+
+		    <div class="form-row mt-5">
+		    	<div class="col">
+		    		<h4>Media aritmetica</h4>
+		    		<input type="text" class="form-control" readonly="readonly" value="{{ma[0]}}">
+		    	</div>
+		    	<div class="col">
+		    		<h4>Media aritmetica</h4>
+		    		<input type="text" class="form-control" readonly="readonly" value="{{ma[1]}}">
+		    	</div>
+		    </div>
+
+		  <input type="button" class="btn btn-primary mt-5" onclick="ir()" value="Regresar">
+		</form>
+
+		<script type="text/javascript">
+			function ir(){
+				window.location.replace("http://localhost:5000/menu");
+			}
+		</script>
+
+	</div>
+{% endblock %}
